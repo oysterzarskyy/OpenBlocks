@@ -1,0 +1,22 @@
+[package]
+name = "openblocks"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+bevy = { version = "0.15.3", default-features = false, features = [
+    "android-game-activity",
+    "bevy_asset",
+    "bevy_core_pipeline",
+    "bevy_pbr",
+    "bevy_render",
+    "bevy_winit",
+    "default_font",
+    "multi_threaded",
+    "png",
+    "x11",
+] }

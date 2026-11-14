@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101611" />
+    <meta name="description" content="OpenBlocks is an early-stage Rust block-building game project." />
+    <title>OpenBlocks — Make a little world</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="OpenBlocks home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>openblocks</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#roadmap">Roadmap</a>
+        <a class="nav-cta" href="https://github.com/">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero page-width">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> COMMUNITY BUILT · EARLY BETA</p>
+          <h1>A little block.<br /><span>A lot of possibility.</span></h1>
+          <p class="hero-description">OpenBlocks is a community-built sandbox where anyone can shape a world, one block at a time. We’re starting small, building in the open, and growing together.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#about">Explore the project <span aria-hidden="true">→</span></a>
+            <a class="button button-quiet" href="#roadmap">See the roadmap</a>
+          </div>
+          <p class="built-with">Built with <strong>Rust</strong> <span>·</span> Made for creators</p>
+        </div>
+
+        <div class="world-card" aria-label="Interactive block world preview">
+          <div class="world-card-top"><span>YOUR FIRST WORLD</span><span class="world-live"><i></i> PLAYGROUND</span></div>
+          <div class="world" id="world" aria-label="Click the blocks to change the preview">
+            <div class="sun"></div>
+            <div class="block block-back"></div>
+            <div class="block block-left"></div>
+            <div class="block block-center"></div>
+            <div class="block block-right"></div>
+            <div class="block block-front"></div>
+            <div class="ground"></div>
+          </div>
+          <div class="world-card-bottom"><span>BUILD SOMETHING SMALL</span><button id="remix" type="button">Remix blocks <span aria-hidden="true">↻</span></button></div>
+        </div>
+      </section>
+
+      <section class="intro page-width" id="about">
+        <div><p class="eyebrow">A PROJECT IN PROGRESS</p><h2>Play is better<br />when you can build it.</h2></div>
+        <p>Our first milestone is a simple 3D block-building sandbox. The long-term dream is a platform for making, sharing, and playing community-created worlds. There’s a lot to build before we get there—and that’s the fun part.</p>
+      </section>
+
+      <section class="roadmap page-width" id="roadmap">
+        <div class="section-heading"><div><p class="eyebrow">THE ROAD AHEAD</p><h2>One step at a time.</h2></div><span class="roadmap-note">Early beta means early beginnings.</span></div>
+        <div class="milestones">
+          <article class="milestone milestone-active"><span class="milestone-number">01</span><div><h3>Build the basics</h3><p>A Rust-powered 3D scene, a small block world, and the foundations for desktop and Android.</p></div><span class="milestone-state">IN PROGRESS</span></article>
+          <article class="milestone"><span class="milestone-number">02</span><div><h3>Make it yours</h3><p>Block placement, removal, saving, and a friendlier creator workflow.</p></div><span class="milestone-state">UP NEXT</span></article>
+          <article class="milestone"><span class="milestone-number">03</span><div><h3>Share worlds</h3><p>Explore options for accounts, publishing, multiplayer, and community safety.</p></div><span class="milestone-state">FUTURE</span></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer page-width"><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>openblocks</span></a><p>Small blocks. Big ideas. Built in the open.</p><span>© <span id="year"></span> OpenBlocks contributors</span></footer>
+  </body>
+</html>

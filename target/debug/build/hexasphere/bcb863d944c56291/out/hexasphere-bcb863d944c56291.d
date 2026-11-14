@@ -1,0 +1,9 @@
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/hexasphere/bcb863d944c56291/out/hexasphere-bcb863d944c56291.d: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/interpolation.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/math.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/shapes.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/slice.rs
+
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/hexasphere/bcb863d944c56291/out/libhexasphere-bcb863d944c56291.rmeta: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/interpolation.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/math.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/shapes.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/slice.rs
+
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/lib.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/interpolation.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/math.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/shapes.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hexasphere-15.1.0/src/slice.rs:

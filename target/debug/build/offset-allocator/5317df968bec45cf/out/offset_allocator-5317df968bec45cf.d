@@ -1,0 +1,8 @@
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/offset-allocator/5317df968bec45cf/out/offset_allocator-5317df968bec45cf.d: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/ext.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/small_float.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/../README.md
+
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/offset-allocator/5317df968bec45cf/out/liboffset_allocator-5317df968bec45cf.rmeta: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/ext.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/small_float.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/../README.md
+
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/lib.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/ext.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/small_float.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/offset-allocator-0.2.0/src/../README.md:

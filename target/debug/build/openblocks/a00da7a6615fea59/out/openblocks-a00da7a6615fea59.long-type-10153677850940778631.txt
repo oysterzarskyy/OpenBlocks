@@ -1,0 +1,1 @@
+bevy::bevy_ecs::change_detection::Res<'_, bevy::bevy_time::Time>

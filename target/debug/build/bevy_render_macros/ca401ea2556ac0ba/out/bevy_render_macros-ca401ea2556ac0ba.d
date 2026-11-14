@@ -1,0 +1,8 @@
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/bevy_render_macros/ca401ea2556ac0ba/out/bevy_render_macros-ca401ea2556ac0ba.d: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/as_bind_group.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_component.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_resource.rs
+
+/mnt/c/Users/Lee Ann/Desktop/OpenBlocks/target/debug/build/bevy_render_macros/ca401ea2556ac0ba/out/libbevy_render_macros-ca401ea2556ac0ba.so: /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/lib.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/as_bind_group.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_component.rs /home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_resource.rs
+
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/lib.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/as_bind_group.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_component.rs:
+/home/overthesyntax/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_render_macros-0.15.3/src/extract_resource.rs:

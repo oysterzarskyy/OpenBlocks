@@ -67,6 +67,15 @@ fn setup_scene(
         Camera3d::default(),
         Transform::from_xyz(8.0, 8.0, 11.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
+    commands.spawn((
+        Camera2d,
+        Camera {
+            order: 1,
+            clear_color: ClearColorConfig::None,
+            ..default()
+        },
+        IsDefaultUiCamera,
+    ));
 
     commands.spawn((
         DirectionalLight {
@@ -86,23 +95,20 @@ fn setup_scene(
 fn setup_access_screen(mut commands: Commands) {
     commands
         .spawn((
-            NodeBundle {
-                style: Style {
-                    width: Val::Percent(100.0),
-                    height: Val::Percent(100.0),
-                    flex_direction: FlexDirection::Column,
-                    align_items: AlignItems::Center,
-                    ..default()
-                },
-                background_color: BackgroundColor(Color::srgb(0.43, 0.8, 0.94)),
+            Node {
+                width: Val::Percent(100.0),
+                height: Val::Percent(100.0),
+                flex_direction: FlexDirection::Column,
+                align_items: AlignItems::Center,
                 ..default()
             },
+            BackgroundColor(Color::srgb(0.43, 0.8, 0.94)),
             AccessScreen,
         ))
         .with_children(|screen| {
             screen
-                .spawn(NodeBundle {
-                    style: Style {
+                .spawn((
+                    Node {
                         width: Val::Percent(100.0),
                         min_height: Val::Px(58.0),
                         padding: UiRect::horizontal(Val::Px(24.0)),
@@ -110,54 +116,42 @@ fn setup_access_screen(mut commands: Commands) {
                         align_items: AlignItems::Center,
                         ..default()
                     },
-                    background_color: BackgroundColor(Color::srgb(0.07, 0.16, 0.27)),
-                    ..default()
-                })
+                    BackgroundColor(Color::srgb(0.07, 0.16, 0.27)),
+                ))
                 .with_children(|header| {
-                    header.spawn(text_line(
-                        "OPENBLOCKS",
-                        20.0,
-                        Color::WHITE,
-                        Style::default(),
-                    ));
+                    header.spawn(text_line("OPENBLOCKS", 20.0, Color::WHITE, Node::default()));
                     header.spawn(text_line(
                         "BETA  ·  GUEST ACCESS",
                         12.0,
                         Color::srgb(0.78, 0.94, 0.48),
-                        Style::default(),
+                        Node::default(),
                     ));
                 });
 
             screen
                 .spawn((
-                    NodeBundle {
-                        style: Style {
-                            width: Val::Percent(94.0),
-                            max_width: Val::Px(1080.0),
-                            margin: UiRect::top(Val::Px(22.0)),
-                            padding: UiRect::all(Val::Px(12.0)),
-                            flex_direction: FlexDirection::Row,
-                            ..default()
-                        },
-                        background_color: BackgroundColor(Color::srgb(0.98, 0.98, 0.94)),
+                    Node {
+                        width: Val::Percent(94.0),
+                        max_width: Val::Px(1080.0),
+                        margin: UiRect::top(Val::Px(22.0)),
+                        padding: UiRect::all(Val::Px(12.0)),
+                        flex_direction: FlexDirection::Row,
                         ..default()
                     },
+                    BackgroundColor(Color::srgb(0.98, 0.98, 0.94)),
                     AccessCard,
                 ))
                 .with_children(|card| {
                     card.spawn((
-                        NodeBundle {
-                            style: Style {
-                                width: Val::Percent(58.0),
-                                min_height: Val::Px(350.0),
-                                padding: UiRect::all(Val::Px(30.0)),
-                                flex_direction: FlexDirection::Column,
-                                justify_content: JustifyContent::Center,
-                                ..default()
-                            },
-                            background_color: BackgroundColor(Color::srgb(0.31, 0.76, 0.91)),
+                        Node {
+                            width: Val::Percent(58.0),
+                            min_height: Val::Px(350.0),
+                            padding: UiRect::all(Val::Px(30.0)),
+                            flex_direction: FlexDirection::Column,
+                            justify_content: JustifyContent::Center,
                             ..default()
                         },
+                        BackgroundColor(Color::srgb(0.31, 0.76, 0.91)),
                         BrandPanel,
                     ))
                     .with_children(|brand| {
@@ -165,13 +159,13 @@ fn setup_access_screen(mut commands: Commands) {
                             "BUILD A WORLD OF YOUR OWN",
                             17.0,
                             Color::srgb(0.07, 0.25, 0.4),
-                            Style::default(),
+                            Node::default(),
                         ));
                         brand.spawn(text_line(
                             "Big ideas\nstart small.",
                             36.0,
                             Color::srgb(0.04, 0.2, 0.34),
-                            Style {
+                            Node {
                                 margin: UiRect::top(Val::Px(14.0)),
                                 ..default()
                             },
@@ -180,19 +174,16 @@ fn setup_access_screen(mut commands: Commands) {
                             "Explore a block-built playground and help shape what comes next.",
                             14.0,
                             Color::srgb(0.08, 0.25, 0.38),
-                            Style {
+                            Node {
                                 width: Val::Percent(100.0),
                                 margin: UiRect::top(Val::Px(12.0)),
                                 ..default()
                             },
                         ));
                         brand
-                            .spawn(NodeBundle {
-                                style: Style {
-                                    margin: UiRect::top(Val::Px(24.0)),
-                                    align_items: AlignItems::FlexEnd,
-                                    ..default()
-                                },
+                            .spawn(Node {
+                                margin: UiRect::top(Val::Px(24.0)),
+                                align_items: AlignItems::FlexEnd,
                                 ..default()
                             })
                             .with_children(|blocks| {
@@ -201,50 +192,45 @@ fn setup_access_screen(mut commands: Commands) {
                                     (40.0, Color::srgb(0.76, 0.91, 0.39)),
                                     (32.0, Color::srgb(0.42, 0.71, 0.98)),
                                 ] {
-                                    blocks.spawn(NodeBundle {
-                                        style: Style {
+                                    blocks.spawn((
+                                        Node {
                                             width: Val::Px(size),
                                             height: Val::Px(size),
                                             margin: UiRect::right(Val::Px(8.0)),
                                             ..default()
                                         },
-                                        background_color: BackgroundColor(color),
-                                        ..default()
-                                    });
+                                        BackgroundColor(color),
+                                    ));
                                 }
                             });
                     });
 
                     card.spawn((
-                        NodeBundle {
-                            style: Style {
-                                width: Val::Percent(42.0),
-                                padding: UiRect::all(Val::Px(22.0)),
-                                flex_direction: FlexDirection::Column,
-                                ..default()
-                            },
-                            background_color: BackgroundColor(Color::WHITE),
+                        Node {
+                            width: Val::Percent(42.0),
+                            padding: UiRect::all(Val::Px(22.0)),
+                            flex_direction: FlexDirection::Column,
                             ..default()
                         },
+                        BackgroundColor(Color::WHITE),
                         AccessOptionsPanel,
                     ))
                     .with_children(|options| {
                         options
-                            .spawn(NodeBundle {
-                                style: Style {
+                            .spawn((
+                                Node {
                                     align_self: AlignSelf::FlexStart,
                                     padding: UiRect::axes(Val::Px(10.0), Val::Px(5.0)),
                                     ..default()
                                 },
-                                background_color: BackgroundColor(Color::srgb(0.88, 0.96, 0.78)),
-                                ..default()
-                            })
+                                BackgroundColor(Color::srgb(0.88, 0.96, 0.78)),
+                            ))
                             .with_children(|badge| {
                                 badge.spawn(text_line(
                                     "BETA  ·  GUEST ACCESS",
                                     11.0,
                                     Color::srgb(0.15, 0.38, 0.18),
-                                    Style::default(),
+                                    Node::default(),
                                 ));
                             });
 
@@ -252,7 +238,7 @@ fn setup_access_screen(mut commands: Commands) {
                             "Join the beta",
                             24.0,
                             Color::srgb(0.11, 0.16, 0.2),
-                            Style {
+                            Node {
                                 margin: UiRect::top(Val::Px(12.0)),
                                 ..default()
                             },
@@ -261,7 +247,7 @@ fn setup_access_screen(mut commands: Commands) {
                             "Email accounts unlock with the full release.",
                             13.0,
                             Color::srgb(0.35, 0.4, 0.44),
-                            Style {
+                            Node {
                                 width: Val::Percent(100.0),
                                 margin: UiRect::bottom(Val::Px(10.0)),
                                 ..default()
@@ -270,8 +256,8 @@ fn setup_access_screen(mut commands: Commands) {
 
                         for label in ["EMAIL ADDRESS  ·  LOCKED", "PASSWORD  ·  LOCKED"] {
                             options
-                                .spawn(NodeBundle {
-                                    style: Style {
+                                .spawn((
+                                    Node {
                                         width: Val::Percent(100.0),
                                         min_height: Val::Px(38.0),
                                         margin: UiRect::bottom(Val::Px(8.0)),
@@ -279,17 +265,14 @@ fn setup_access_screen(mut commands: Commands) {
                                         align_items: AlignItems::Center,
                                         ..default()
                                     },
-                                    background_color: BackgroundColor(Color::srgb(
-                                        0.94, 0.95, 0.95,
-                                    )),
-                                    ..default()
-                                })
+                                    BackgroundColor(Color::srgb(0.94, 0.95, 0.95)),
+                                ))
                                 .with_children(|field| {
                                     field.spawn(text_line(
                                         label,
                                         12.0,
                                         Color::srgb(0.48, 0.53, 0.57),
-                                        Style::default(),
+                                        Node::default(),
                                     ));
                                 });
                         }
@@ -299,8 +282,8 @@ fn setup_access_screen(mut commands: Commands) {
                             "Sign up with email  ·  LOCKED",
                         ] {
                             options
-                                .spawn(NodeBundle {
-                                    style: Style {
+                                .spawn((
+                                    Node {
                                         width: Val::Percent(100.0),
                                         min_height: Val::Px(38.0),
                                         margin: UiRect::bottom(Val::Px(7.0)),
@@ -308,35 +291,30 @@ fn setup_access_screen(mut commands: Commands) {
                                         align_items: AlignItems::Center,
                                         ..default()
                                     },
-                                    background_color: BackgroundColor(Color::srgb(
-                                        0.89, 0.91, 0.92,
-                                    )),
-                                    ..default()
-                                })
+                                    BackgroundColor(Color::srgb(0.89, 0.91, 0.92)),
+                                ))
                                 .with_children(|locked| {
                                     locked.spawn(text_line(
                                         label,
                                         12.0,
                                         Color::srgb(0.45, 0.49, 0.52),
-                                        Style::default(),
+                                        Node::default(),
                                     ));
                                 });
                         }
 
                         options
                             .spawn((
-                                ButtonBundle {
-                                    style: Style {
-                                        width: Val::Percent(100.0),
-                                        min_height: Val::Px(48.0),
-                                        margin: UiRect::top(Val::Px(5.0)),
-                                        justify_content: JustifyContent::Center,
-                                        align_items: AlignItems::Center,
-                                        ..default()
-                                    },
-                                    background_color: BackgroundColor(Color::srgb(0.3, 0.67, 0.24)),
+                                Button,
+                                Node {
+                                    width: Val::Percent(100.0),
+                                    min_height: Val::Px(48.0),
+                                    margin: UiRect::top(Val::Px(5.0)),
+                                    justify_content: JustifyContent::Center,
+                                    align_items: AlignItems::Center,
                                     ..default()
                                 },
+                                BackgroundColor(Color::srgb(0.3, 0.67, 0.24)),
                                 GuestButton,
                             ))
                             .with_children(|button| {
@@ -344,7 +322,7 @@ fn setup_access_screen(mut commands: Commands) {
                                     "Continue as guest",
                                     17.0,
                                     Color::WHITE,
-                                    Style::default(),
+                                    Node::default(),
                                 ));
                             });
 
@@ -352,7 +330,7 @@ fn setup_access_screen(mut commands: Commands) {
                             "No account needed for beta. Email is not collected.",
                             11.0,
                             Color::srgb(0.42, 0.47, 0.5),
-                            Style {
+                            Node {
                                 width: Val::Percent(100.0),
                                 margin: UiRect::top(Val::Px(10.0)),
                                 ..default()
@@ -363,27 +341,30 @@ fn setup_access_screen(mut commands: Commands) {
         });
 }
 
-fn text_line(text: &str, font_size: f32, color: Color, style: Style) -> TextBundle {
-    TextBundle {
-        text: Text::from_section(
-            text,
-            TextStyle {
-                font_size,
-                color,
-                ..default()
-            },
-        ),
-        style,
-        ..default()
-    }
+fn text_line(
+    text: &str,
+    font_size: f32,
+    color: Color,
+    node: Node,
+) -> (Text, TextFont, TextColor, Node, Label) {
+    (
+        Text::new(text),
+        TextFont {
+            font_size,
+            ..default()
+        },
+        TextColor(color),
+        node,
+        Label,
+    )
 }
 
 fn adapt_access_layout(
     windows: Query<&Window>,
     mut orientation: ResMut<LayoutOrientation>,
-    mut cards: Query<&mut Style, With<AccessCard>>,
-    mut brand_panels: Query<&mut Style, (With<BrandPanel>, Without<AccessOptionsPanel>)>,
-    mut option_panels: Query<&mut Style, (With<AccessOptionsPanel>, Without<BrandPanel>)>,
+    mut cards: Query<&mut Node, With<AccessCard>>,
+    mut brand_panels: Query<&mut Node, (With<BrandPanel>, Without<AccessOptionsPanel>)>,
+    mut option_panels: Query<&mut Node, (With<AccessOptionsPanel>, Without<BrandPanel>)>,
 ) {
     let Some(window) = windows.iter().next() else {
         return;
@@ -394,21 +375,21 @@ fn adapt_access_layout(
     }
     orientation.0 = Some(is_landscape);
 
-    for mut style in &mut cards {
-        style.flex_direction = if is_landscape {
+    for mut node in &mut cards {
+        node.flex_direction = if is_landscape {
             FlexDirection::Row
         } else {
             FlexDirection::Column
         };
     }
-    for mut style in &mut brand_panels {
-        style.width = Val::Percent(if is_landscape { 58.0 } else { 100.0 });
-        style.min_height = Val::Px(if is_landscape { 350.0 } else { 160.0 });
-        style.padding = UiRect::all(Val::Px(if is_landscape { 26.0 } else { 16.0 }));
+    for mut node in &mut brand_panels {
+        node.width = Val::Percent(if is_landscape { 58.0 } else { 100.0 });
+        node.min_height = Val::Px(if is_landscape { 350.0 } else { 160.0 });
+        node.padding = UiRect::all(Val::Px(if is_landscape { 26.0 } else { 16.0 }));
     }
-    for mut style in &mut option_panels {
-        style.width = Val::Percent(if is_landscape { 42.0 } else { 100.0 });
-        style.padding = UiRect::all(Val::Px(if is_landscape { 22.0 } else { 16.0 }));
+    for mut node in &mut option_panels {
+        node.width = Val::Percent(if is_landscape { 42.0 } else { 100.0 });
+        node.padding = UiRect::all(Val::Px(if is_landscape { 22.0 } else { 16.0 }));
     }
 }
 

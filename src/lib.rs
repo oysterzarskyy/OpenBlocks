@@ -1,4 +1,37 @@
-use bevy::prelude::*;
+use bevy::{
+    prelude::*,
+    reflect::TypePath,
+    render::render_resource::{AsBindGroup, ShaderRef},
+};
+
+const BLOCK_SHADER_PATH: &str = "shaders/block_material.wgsl";
+const TERRAIN_SHADER_PATH: &str = "grass/grass_texture.wgsl";
+
+#[derive(Asset, TypePath, AsBindGroup, Debug, Clone)]
+struct BlockMaterial {
+    #[uniform(0)]
+    color: LinearRgba,
+    #[uniform(1)]
+    style: Vec4,
+}
+
+impl Material for BlockMaterial {
+    fn fragment_shader() -> ShaderRef {
+        BLOCK_SHADER_PATH.into()
+    }
+}
+
+#[derive(Asset, TypePath, AsBindGroup, Debug, Clone)]
+struct TerrainMaterial {
+    #[uniform(0)]
+    color: LinearRgba,
+}
+
+impl Material for TerrainMaterial {
+    fn fragment_shader() -> ShaderRef {
+        TERRAIN_SHADER_PATH.into()
+    }
+}
 
 #[derive(Resource, Default)]
 struct AccessState {
@@ -26,7 +59,11 @@ struct GuestButton;
 #[cfg_attr(target_os = "android", bevy_main)]
 pub fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins((
+            DefaultPlugins,
+            MaterialPlugin::<BlockMaterial>::default(),
+            MaterialPlugin::<TerrainMaterial>::default(),
+        ))
         .init_resource::<AccessState>()
         .init_resource::<LayoutOrientation>()
         .add_systems(Startup, (setup_scene, setup_access_screen))
@@ -40,12 +77,28 @@ pub fn main() {
 fn setup_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<StandardMaterial>>,
+    mut block_materials: ResMut<Assets<BlockMaterial>>,
+    mut terrain_materials: ResMut<Assets<TerrainMaterial>>,
 ) {
     let block_mesh = meshes.add(Cuboid::new(1.0, 1.0, 1.0));
     let ground_mesh = meshes.add(Cuboid::new(14.0, 0.2, 14.0));
-    let block_material = materials.add(Color::srgb(0.25, 0.72, 0.58));
-    let ground_material = materials.add(Color::srgb(0.16, 0.2, 0.25));
+    let materials = [
+        (Color::srgb(0.95, 0.39, 0.29), 1.0),
+        (Color::srgb(0.37, 0.69, 0.92), 0.0),
+        (Color::srgb(0.58, 0.32, 0.18), 2.0),
+        (Color::srgb(0.48, 0.54, 0.58), 3.0),
+        (Color::srgb(0.26, 0.61, 0.29), 4.0),
+        (Color::srgb(0.98, 0.73, 0.28), 0.0),
+    ]
+    .map(|(color, pattern)| {
+        block_materials.add(BlockMaterial {
+            color: color.to_linear().into(),
+            style: Vec4::new(3.0, 0.68, 0.035, pattern),
+        })
+    });
+    let ground_material = terrain_materials.add(TerrainMaterial {
+        color: Color::srgb(0.12, 0.34, 0.26).to_linear().into(),
+    });
 
     commands.spawn((
         Mesh3d(ground_mesh),
@@ -55,13 +108,31 @@ fn setup_scene(
 
     for x in -2..=2 {
         for z in -2..=2 {
+            let material_index = (x + z + 10).rem_euclid(materials.len() as i32) as usize;
             commands.spawn((
                 Mesh3d(block_mesh.clone()),
-                MeshMaterial3d(block_material.clone()),
+                MeshMaterial3d(materials[material_index].clone()),
                 Transform::from_xyz(x as f32, 0.0, z as f32),
             ));
         }
     }
+
+    spawn_tree(
+        &mut commands,
+        &block_mesh,
+        &materials[2],
+        &materials[4],
+        Vec3::new(-4.0, 0.0, 1.0),
+    );
+    spawn_tree(
+        &mut commands,
+        &block_mesh,
+        &materials[2],
+        &materials[4],
+        Vec3::new(4.0, 0.0, 3.0),
+    );
+    spawn_stone_cluster(&mut commands, &block_mesh, &materials[3], Vec3::new(4.0, 0.0, -1.0));
+    spawn_block_house(&mut commands, &block_mesh, &materials[0], &materials[2]);
 
     commands.spawn((
         Camera3d::default(),
@@ -90,6 +161,93 @@ fn setup_scene(
             0.0,
         )),
     ));
+}
+
+fn spawn_block(
+    commands: &mut Commands,
+    mesh: &Handle<Mesh>,
+    material: &Handle<BlockMaterial>,
+    position: Vec3,
+) {
+    commands.spawn((
+        Mesh3d(mesh.clone()),
+        MeshMaterial3d(material.clone()),
+        Transform::from_translation(position),
+    ));
+}
+
+fn spawn_tree(
+    commands: &mut Commands,
+    mesh: &Handle<Mesh>,
+    wood: &Handle<BlockMaterial>,
+    leaves: &Handle<BlockMaterial>,
+    origin: Vec3,
+) {
+    for level in 0..3 {
+        spawn_block(commands, mesh, wood, origin + Vec3::Y * (level as f32 + 0.5));
+    }
+
+    for (x, y, z) in [
+        (0.0, 3.5, 0.0),
+        (1.0, 2.5, 0.0),
+        (-1.0, 2.5, 0.0),
+        (0.0, 2.5, 1.0),
+        (0.0, 2.5, -1.0),
+        (0.0, 1.5, 0.0),
+    ] {
+        spawn_block(commands, mesh, leaves, origin + Vec3::new(x, y, z));
+    }
+}
+
+fn spawn_stone_cluster(
+    commands: &mut Commands,
+    mesh: &Handle<Mesh>,
+    stone: &Handle<BlockMaterial>,
+    origin: Vec3,
+) {
+    for offset in [
+        Vec3::new(0.0, 0.5, 0.0),
+        Vec3::new(1.0, 0.5, 0.0),
+        Vec3::new(0.5, 1.5, 0.0),
+        Vec3::new(0.0, 0.5, 1.0),
+    ] {
+        spawn_block(commands, mesh, stone, origin + offset);
+    }
+}
+
+fn spawn_block_house(
+    commands: &mut Commands,
+    mesh: &Handle<Mesh>,
+    brick: &Handle<BlockMaterial>,
+    wood: &Handle<BlockMaterial>,
+) {
+    let origin = Vec3::new(3.0, 0.0, -4.0);
+    for x in 0..3 {
+        for y in 0..2 {
+            spawn_block(
+                commands,
+                mesh,
+                brick,
+                origin + Vec3::new(x as f32, y as f32 + 0.5, 0.0),
+            );
+            if x == 0 || x == 2 {
+                spawn_block(
+                    commands,
+                    mesh,
+                    brick,
+                    origin + Vec3::new(x as f32, y as f32 + 0.5, 2.0),
+                );
+            }
+        }
+        for z in 0..3 {
+            spawn_block(
+                commands,
+                mesh,
+                wood,
+                origin + Vec3::new(x as f32, 2.5, z as f32),
+            );
+        }
+    }
 }
 
 fn setup_access_screen(mut commands: Commands) {

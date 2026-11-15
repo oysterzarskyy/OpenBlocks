@@ -3,113 +3,114 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#153b56" />
-    <meta name="description" content="Enter the OpenBlocks beta as a guest. Email login and signup unlock with the full release." />
-    <title>OpenBlocks — Guest beta access</title>
+    <meta name="theme-color" content="#102b40" />
+    <meta name="description" content="Build a little block world in the OpenBlocks guest-only web playground." />
+    <title>OpenBlocks — Guest Playground</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body data-theme="day">
     <header class="topbar">
-      <a class="brand" href="#home" aria-label="OpenBlocks home">
+      <a class="brand" href="#home" aria-label="OpenBlocks playground home">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
         <span>openblocks</span>
       </a>
-      <nav aria-label="Main navigation">
-        <a href="#about">The project</a>
-        <a href="#roadmap">Roadmap</a>
-        <span class="beta-tag">BETA · GUEST ACCESS</span>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#play">Playground</a>
+        <a href="#about">About</a>
+        <span class="guest-chip"><span class="guest-dot"></span> GUEST · LOCAL WORLD</span>
       </nav>
+      <button class="icon-button mobile-tools-toggle" id="toggle-tools" type="button" aria-expanded="true" aria-controls="tool-panel" title="Show or hide tools">☰</button>
     </header>
 
-    <main id="home">
-      <section class="access-layout page-width" aria-label="OpenBlocks beta access">
-        <section class="brand-panel" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow-dot"></span> A BLOCK-BUILDING PLAYGROUND</p>
-            <h1 id="hero-title">Build a world<br /><span>of your own.</span></h1>
-            <p class="hero-description">Jump into the OpenBlocks beta as a guest. Explore the early world and help us shape what comes next.</p>
-          </div>
-
-          <div class="world-stage" id="world" role="img" aria-label="A colorful block landscape under a bright sky">
-            <div class="sun"></div>
-            <div class="cloud cloud-one"></div>
-            <div class="cloud cloud-two"></div>
-            <div class="ground"></div>
-            <div class="block block-back" aria-hidden="true"></div>
-            <div class="block block-left" aria-hidden="true"></div>
-            <div class="block block-center" aria-hidden="true"></div>
-            <div class="block block-right" aria-hidden="true"></div>
-            <div class="block block-front" aria-hidden="true"></div>
-          </div>
-          <div class="stage-caption">
-            <span>YOUR FIRST WORLD</span>
-            <button id="remix" type="button">Remix blocks <span aria-hidden="true">↻</span></button>
-          </div>
-        </section>
-
-        <section class="account-panel" aria-labelledby="account-title">
-          <div class="status-pill"><span class="status-dot"></span> EARLY BETA · GUEST MODE</div>
-          <h2 id="account-title">Welcome to OpenBlocks</h2>
-          <p class="account-intro">Choose how you’d like to explore.</p>
-
-          <form class="account-form" aria-label="Email access options">
-            <label class="field-label" for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="Available in the full release" autocomplete="email" disabled />
-
-            <label class="field-label" for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="Email access is locked" autocomplete="current-password" disabled />
-
-            <button class="locked-action" type="button" disabled>Log in with email <span>LOCKED</span></button>
-            <button class="locked-action" type="button" disabled>Sign up with email <span>LOCKED</span></button>
-          </form>
-
-          <div class="divider"><span>OR</span></div>
-          <a class="guest-button" href="#about">Continue as guest <span aria-hidden="true">→</span></a>
-          <p class="privacy-note">No account needed during beta. We don’t collect your email.</p>
-        </section>
-      </section>
-
-      <section class="project-strip page-width" id="about">
-        <div>
-          <p class="section-kicker">A PROJECT IN PROGRESS</p>
-          <h2>Play is better when you can build it.</h2>
-        </div>
-        <p>OpenBlocks is an early-stage Rust sandbox. The first goal is a small, playable block world; sharing, multiplayer, and creator tools will come later.</p>
-      </section>
-
-      <section class="roadmap page-width" id="roadmap">
-        <div class="roadmap-heading">
+    <main id="home" class="site-shell">
+      <section class="game-shell" id="play" aria-labelledby="page-title">
+        <div class="game-heading">
           <div>
-            <p class="section-kicker">THE ROAD AHEAD</p>
-            <h2>One step at a time.</h2>
+            <p class="eyebrow"><span class="live-dot"></span> WEB PLAYGROUND · BETA</p>
+            <h1 id="page-title">Make a little world.</h1>
+            <p class="subtitle">A guest-only build space. Pick a material, then click or tap the grid.</p>
           </div>
-          <p>Early beta means early beginnings.</p>
+          <div class="world-controls" aria-label="World actions">
+            <label class="theme-picker" for="theme-select"><span aria-hidden="true">◐</span>
+              <select id="theme-select" aria-label="Choose world palette">
+                <option value="day">Sunny</option>
+                <option value="dusk">Dusk</option>
+                <option value="night">Night</option>
+              </select>
+            </label>
+            <button class="button button-soft" id="undo" type="button" disabled title="Undo the last tile change">↶ <span>Undo</span></button>
+            <button class="button button-soft" id="reset-world" type="button">Reset</button>
+            <button class="button button-primary" id="save-world" type="button">Save world <span aria-hidden="true">↓</span></button>
+          </div>
         </div>
-        <div class="milestones">
-          <article class="milestone milestone-active">
-            <span class="milestone-number">01</span>
-            <div><h3>Build the basics</h3><p>A Rust-powered 3D scene, a small block world, and desktop and Android foundations.</p></div>
-            <span class="milestone-state">IN PROGRESS</span>
-          </article>
-          <article class="milestone">
-            <span class="milestone-number">02</span>
-            <div><h3>Make it yours</h3><p>Block placement, removal, local saves, and friendlier building tools.</p></div>
-            <span class="milestone-state">UP NEXT</span>
-          </article>
-          <article class="milestone">
-            <span class="milestone-number">03</span>
-            <div><h3>Share worlds</h3><p>Explore publishing, multiplayer, discovery, and community safety.</p></div>
-            <span class="milestone-state">FUTURE</span>
-          </article>
+
+        <div class="play-layout">
+          <aside class="tool-panel" id="tool-panel" aria-label="Guest building tools">
+            <div class="panel-topline">
+              <div><p class="panel-kicker">LOCAL SESSION</p><h2>Build tools</h2></div>
+              <span class="guest-avatar" aria-hidden="true">G</span>
+            </div>
+            <p class="guest-note">No account. Your world stays in this browser.</p>
+
+            <div class="panel-rule"></div>
+            <div class="section-label">MATERIALS <span id="material-count">00</span></div>
+            <div class="material-filters">
+              <label class="sr-only" for="material-search">Search materials</label>
+              <input id="material-search" type="search" placeholder="Find a material…" autocomplete="off" />
+              <label class="sr-only" for="material-category">Filter materials by category</label>
+              <select id="material-category">
+                <option value="all">All categories</option>
+                <option value="ground">Ground</option>
+                <option value="stone">Stone</option>
+                <option value="building">Building</option>
+                <option value="metal">Metal & plastic</option>
+                <option value="special">Special</option>
+              </select>
+            </div>
+            <div class="material-grid" id="materials" role="toolbar" aria-label="Select a building material"></div>
+            <p class="material-results" id="material-results" aria-live="polite"></p>
+
+            <div class="panel-rule"></div>
+            <div class="section-label">TOOL</div>
+            <div class="tool-switch" role="group" aria-label="Choose build or erase tool">
+              <button class="tool-button is-active" type="button" data-tool="build" aria-pressed="true">＋ <span>Build</span></button>
+              <button class="tool-button" type="button" data-tool="erase" aria-pressed="false">⌫ <span>Erase</span></button>
+            </div>
+
+            <div class="tool-tip"><span aria-hidden="true">✦</span><p id="tool-hint">Select a material and tap a tile to build.</p></div>
+            <button class="text-button" id="new-world" type="button">Generate a fresh island <span aria-hidden="true">↗</span></button>
+          </aside>
+
+          <section class="canvas-column" aria-label="Your block world">
+            <div class="canvas-topbar">
+              <div class="world-name"><span class="world-icon" aria-hidden="true">▰</span><div><strong>Starter meadow</strong><small>Private guest world</small></div></div>
+              <div class="canvas-meta"><span class="save-indicator" id="save-indicator"><i></i> SAVED LOCALLY</span><span class="coordinates" id="coordinates">x: — · y: —</span></div>
+            </div>
+            <div class="canvas-frame" id="canvas-frame">
+              <div class="sky-decoration sky-sun" aria-hidden="true"></div>
+              <div class="sky-decoration cloud cloud-a" aria-hidden="true"></div>
+              <div class="sky-decoration cloud cloud-b" aria-hidden="true"></div>
+              <canvas id="world" tabindex="0" role="application" aria-label="Isometric block world. Use arrow keys to move the selection, Enter to build, and Backspace to erase.">Your browser does not support canvas.</canvas>
+              <div class="canvas-stamp" aria-hidden="true">OPENBLOCKS · GUEST WORLD</div>
+              <div class="toast" id="toast" role="status" aria-live="polite"></div>
+            </div>
+            <div class="canvas-footer">
+              <span><kbd>Click</kbd> build <span class="footer-dot">·</span> <kbd>Right-click</kbd> erase</span>
+              <span id="tile-count">0 blocks placed</span>
+            </div>
+          </section>
         </div>
+      </section>
+
+      <section class="about-strip" id="about">
+        <div class="about-mark" aria-hidden="true">✳</div>
+        <div><p class="panel-kicker">OPENBLOCKS WEB BETA</p><h2>Build first. Accounts later.</h2><p>This web playground is guest-only. Worlds save locally on this device; email login and signup are not available in beta.</p></div>
+        <span class="about-badge">NO ACCOUNT NEEDED</span>
       </section>
     </main>
 
-    <footer class="footer page-width">
-      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>openblocks</span></a>
-      <p>Small blocks. Big ideas. Built in the open.</p>
-      <span>© <span id="year"></span> OpenBlocks contributors</span>
-    </footer>
+    <footer class="site-footer"><span>© <span id="year"></span> OpenBlocks</span><span>Small blocks, big ideas.</span><a href="#home">Back to top ↑</a></footer>
   </body>
 </html>

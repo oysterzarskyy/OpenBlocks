@@ -24,11 +24,14 @@ jobs:
         run: |
           docker create --name openblocks-windows-artifact openblocks-windows
           docker cp openblocks-windows-artifact:/openblocks.exe ./openblocks.exe
+          docker cp openblocks-windows-artifact:/assets ./assets
           docker rm openblocks-windows-artifact
 
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
           name: openblocks-windows-x64
-          path: openblocks.exe
+          path: |
+            openblocks.exe
+            assets/**
           if-no-files-found: error

@@ -1,0 +1,470 @@
+{
+  "version": 7,
+  "hash": ""
+  "world": [
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": {
+          "material": "wood"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": {
+          "material": "wood"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": {
+          "material": "crystal"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": {
+          "material": "wood"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": {
+          "material": "crystal"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "dirt",
+        "block": null
+      },
+      {
+        "ground": "sand",
+        "block": null
+      },
+      {
+        "ground": "dirt",
+        "block": null
+      },
+      {
+        "ground": "dirt",
+        "block": null
+      },
+      {
+        "ground": "dirt",
+        "block": null
+      },
+      {
+        "ground": "dirt",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": {
+          "material": "crystal"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": null
+      },
+      {
+        "ground": "water",
+        "block": {
+          "material": "crystal"
+        }
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ],
+    [
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      },
+      {
+        "ground": "grass",
+        "block": null
+      }
+    ]
+  ]
+}

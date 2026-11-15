@@ -10,8 +10,10 @@ OpenBlocks is an early-stage project exploring a community-built alternative to 
 
 - A Rust game foundation using [Bevy](https://bevy.org/).
 - A basic 3D scene with a block grid and keyboard camera movement.
+- Custom Bevy materials using WGSL block and terrain shaders in `assets/shaders/`.
 - A guest-first access screen; email login and signup are visible but locked until full release.
 - A plain HTML/CSS/JavaScript landing page in `website/`.
+- A Cloudflare D1 Worker auth scaffold in `auth/`; its API is disabled until configured for release.
 - An Android arm64 debug APK workflow in GitHub Actions.
 - A Windows x64 release build workflow in GitHub Actions.
 
@@ -23,11 +25,11 @@ You’ll need a recent stable Rust toolchain. From the project root:
 cargo run
 ```
 
-Choose **Continue as guest** to enter the sandbox. Email login and signup are visible but locked until full release; the prototype does not collect email addresses or create accounts. Use **WASD** or the **arrow keys** to move the camera. Block placement, saving, multiplayer, and account services are not implemented yet.
+Choose **Continue as guest** to enter the sandbox. Email login and signup remain locked; the client does not collect email or call the auth API. Use **WASD** or the **arrow keys** to move the camera. Block placement, saving, and multiplayer are not implemented yet.
 
 ## Preview the website
 
-Open `website/index.html` in a browser. The landing page is static and has no build step or package installation.
+`website/` is a guest-only, local-save block-building playground. Open `website/index.html` in a browser for development, or follow `website/README.md` to produce the minified and obfuscated `website/dist/` deployment.
 
 ## Windows desktop build
 
@@ -39,10 +41,15 @@ To build locally with Docker installed, run these commands from the project root
 docker build --target windows-artifact --tag openblocks-windows .
 docker create --name openblocks-windows-artifact openblocks-windows
 docker cp openblocks-windows-artifact:/openblocks.exe ./openblocks.exe
+docker cp openblocks-windows-artifact:/assets ./assets
 docker rm openblocks-windows-artifact
 ```
 
-The executable is written to `./openblocks.exe`. The Docker image cross-compiles it; it does not run the Windows GUI inside the Linux container.
+The executable is written to `./openblocks.exe`; keep the extracted `assets/` directory next to it so the WGSL shaders can load. The Docker image cross-compiles the program; it does not run the Windows GUI inside the Linux container.
+
+## D1 login backend scaffold
+
+`auth/` contains a Cloudflare Worker API, D1 migration, and setup instructions. It supports email signup/login/session endpoints, but `AUTH_ENABLED` is false by default and the client UI remains locked. Create your D1 database and follow `auth/README.md` to bind it; do not enable the API publicly until you configure the allowed origin and rate limiting.
 
 ## Android beta build
 
@@ -53,6 +60,8 @@ To build locally, install the Android SDK/NDK and Gradle, then run:
 ```sh
 cargo install cargo-ndk
 cargo ndk -t arm64-v8a -o android/app/src/main/jniLibs build --release --lib
+mkdir -p android/app/src/main/assets
+cp -R assets/. android/app/src/main/assets/
 gradle -p android assembleDebug
 ```
 

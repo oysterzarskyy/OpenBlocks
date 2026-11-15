@@ -6,3 +6,8 @@
 *.apk
 *.aab
 *.log
+/auth/node_modules/
+/auth/.wrangler/
+/auth/.dev.vars
+/website/node_modules/
+/website/dist/

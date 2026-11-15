@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "openblocks-auth",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-15",
+  "workers_dev": true,
+  "vars": {
+    "AUTH_ENABLED": "false",
+    "ALLOWED_ORIGIN": "https://your-site.example"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "openblocks_d1",
+      "database_id": "d331818a-367e-4953-86e1-e14aefde2399",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

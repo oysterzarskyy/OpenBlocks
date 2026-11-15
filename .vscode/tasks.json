@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "OpenBlocks: WSL release build",
+			"type": "shell",
+			"command": "/home/overthesyntax/.cargo/bin/cargo",
+			"args": [
+				"build",
+				"--release",
+				"--bin",
+				"openblocks"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$rustc"
+			]
+		}
+	]
+}

@@ -8,7 +8,10 @@ RUN rustup target add x86_64-pc-windows-gnu
 
 WORKDIR /workspace
 COPY Cargo.toml Cargo.lock ./
-RUN cargo fetch --locked
+
+# Cargo requires the declared library and binary source paths to exist while
+# resolving the manifest. These placeholders keep dependency downloads cached.
+RUN mkdir -p src && touch src/lib.rs src/main.rs && cargo fetch --locked
 
 COPY src ./src
 

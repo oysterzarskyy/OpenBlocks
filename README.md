@@ -10,8 +10,10 @@ OpenBlocks is an early-stage project exploring a community-built alternative to 
 
 - A Rust game foundation using [Bevy](https://bevy.org/).
 - A basic 3D scene with a block grid and keyboard camera movement.
+- A guest-first access screen; email login and signup are visible but locked until full release.
 - A plain HTML/CSS/JavaScript landing page in `website/`.
 - An Android arm64 debug APK workflow in GitHub Actions.
+- A Windows x64 release build workflow in GitHub Actions.
 
 ## Run the prototype
 
@@ -21,11 +23,26 @@ You’ll need a recent stable Rust toolchain. From the project root:
 cargo run
 ```
 
-Use **WASD** or the **arrow keys** to move the camera. The first prototype is intentionally small; block placement, saving, multiplayer, accounts, and publishing are not implemented yet.
+Choose **Continue as guest** to enter the sandbox. Email login and signup are visible but locked until full release; the prototype does not collect email addresses or create accounts. Use **WASD** or the **arrow keys** to move the camera. Block placement, saving, multiplayer, and account services are not implemented yet.
 
 ## Preview the website
 
 Open `website/index.html` in a browser. The landing page is static and has no build step or package installation.
+
+## Windows desktop build
+
+The **Windows desktop build** workflow uses `Dockerfile` to cross-compile a 64-bit Windows executable and uploads it as the `openblocks-windows-x64` artifact. It runs on pushes to `main`/`master`, pull requests, or when started manually from the Actions tab. Download the executable from the workflow run’s **Artifacts** section.
+
+To build locally with Docker installed, run these commands from the project root:
+
+```sh
+docker build --target windows-artifact --tag openblocks-windows .
+docker create --name openblocks-windows-artifact openblocks-windows
+docker cp openblocks-windows-artifact:/openblocks.exe ./openblocks.exe
+docker rm openblocks-windows-artifact
+```
+
+The executable is written to `./openblocks.exe`. The Docker image cross-compiles it; it does not run the Windows GUI inside the Linux container.
 
 ## Android beta build
 

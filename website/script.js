@@ -1,7 +1,7 @@
 const world = document.querySelector('#world');
 const remixButton = document.querySelector('#remix');
 const blocks = [...world.querySelectorAll('.block')];
-const colors = ['#72c989', '#a5e477', '#58b987', '#d2e87a', '#7dd39a', '#66bd83', '#80c6d6', '#e4ad68'];
+const colors = ['#ef7654', '#f0bf50', '#a6d94d', '#4b9ee5', '#fff1a1', '#43b8c2'];
 
 function remixBlocks() {
   blocks.forEach((block) => {
